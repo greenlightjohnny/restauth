@@ -5,7 +5,8 @@ require("dotenv").config();
 
 ////Import Routes
 const authRoute = require("./routes/auth");
-
+const postRoute = require("./routes/posts");
+console.log(postRoute);
 ///Connect to database with Mongoose
 mongoose.connect(
   `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PWORD}@cluster0.1hf7x.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
@@ -18,5 +19,6 @@ app.use(express.json());
 
 ///Route Middlewares
 app.use("/api/user", authRoute);
+app.use("/api/posts", postRoute);
 
 app.listen(3000, () => console.log("Server is UP!"));
