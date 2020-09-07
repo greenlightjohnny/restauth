@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../validation");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
-console.log(process.env.TOKEN_SECRET);
 
 router.post("/register", async (req, res) => {
   ///Validate data submitted before sending to MongoDB
@@ -55,7 +54,7 @@ router.post("/login", async (req, res) => {
 
   ////Create and assign a JWT for repeat requests. Yay!
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  console.log(token);
+  console.log("token start", token);
 
   res.header("auth-token", token).send(token);
 });
